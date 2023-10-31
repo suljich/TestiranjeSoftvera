@@ -1,16 +1,16 @@
 ﻿using System;
 
-
+namespace Zadatak;
 class Test
 {
-    static void Main(string[] args)
+    static void Main()
     {
         Stan[] stanovi = new Stan[4];
         stanovi[0] = new NenamjestenStan(50, Lokacija.Gradsko, true);
         stanovi[1] = new NenamjestenStan(80, Lokacija.Prigradsko, true);
         stanovi[2] = new NamjestenStan(40, Lokacija.Prigradsko, true, 2000, 2);
         stanovi[3] = new NamjestenStan(80, Lokacija.Gradsko, false, 3000, 6);
-        //Console.WriteLine("Površina Lokacija Namješten Internet Vrijednost namještaja Broj aparata");
+        Console.WriteLine("Površina Lokacija Namješten Internet Vrijednost namještaja Broj aparata");
         foreach (Stan stan in stanovi)
         {
             stan.Ispisi();
@@ -69,13 +69,11 @@ abstract class Stan
         set => _internet = value;
     }
 
-    public void Ispisi()
+    virtual public void Ispisi()
     {
-        Console.Write("Broj kvadrata: "+BrojKvadrata);
-        Console.Write(", Internet: ");
-        Console.Write(Internet ? "Da" : "Ne");
-        Console.Write(", Lokacija: ");
-        Console.Write(Lokacija==Lokacija.Gradsko?"Gradsko\n":"Prigradsko\n");
+        Console.Write(BrojKvadrata+" ");
+        Console.Write(Lokacija==Lokacija.Gradsko?"Gradsko ":"Prigradsko ");
+        Console.Write(Internet ? "Da " : "Ne ");
     }
 
     abstract public double ObracunajCijenuNajma();
@@ -88,6 +86,12 @@ class NenamjestenStan : Stan {
         BrojKvadrata = povrsina;
         Lokacija = lokacija;
         Internet = internet;
+    }
+
+    override public void Ispisi()
+    {
+        base.Ispisi();
+        Console.Write("\n");
     }
 
     override public double ObracunajCijenuNajma()
@@ -115,6 +119,14 @@ class NamjestenStan : Stan {
         Internet = internet;
         this.vrijednostNamjestaja = vrijednostNamjestaja;
         this.brojAparata = brojAparata;
+    }
+
+    override public void Ispisi()
+    {
+        base.Ispisi();
+        Console.Write(vrijednostNamjestaja+" ");
+        Console.Write(brojAparata);
+        Console.Write("\n");
     }
 
     override public double ObracunajCijenuNajma()
