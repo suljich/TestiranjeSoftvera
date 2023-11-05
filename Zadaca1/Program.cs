@@ -35,7 +35,7 @@ class Test
                 Console.WriteLine("Ukupna cijena najma stana je {0:F2}.", stan.ObracunajCijenuNajma());
             }
         }
-        //Console.ReadLine();
+        Console.ReadLine();
     }
 }
 
@@ -71,9 +71,8 @@ abstract class Stan
 
     virtual public void Ispisi()
     {
-        Console.Write(BrojKvadrata+" ");
+        Console.Write("\n"+BrojKvadrata+" ");
         Console.Write(Lokacija==Lokacija.Gradsko?"Gradsko ":"Prigradsko ");
-        Console.Write(Internet ? "Da " : "Ne ");
     }
 
     abstract public double ObracunajCijenuNajma();
@@ -91,6 +90,8 @@ class NenamjestenStan : Stan {
     override public void Ispisi()
     {
         base.Ispisi();
+        Console.Write("Nenamjesten ");
+        Console.Write(Internet ? "Da " : "Ne ");
         Console.Write("\n");
     }
 
@@ -124,6 +125,8 @@ class NamjestenStan : Stan {
     override public void Ispisi()
     {
         base.Ispisi();
+        Console.Write("Namjesten ");
+        Console.Write(Internet ? "Da " : "Ne ");
         Console.Write(vrijednostNamjestaja+" ");
         Console.Write(brojAparata);
         Console.Write("\n");
