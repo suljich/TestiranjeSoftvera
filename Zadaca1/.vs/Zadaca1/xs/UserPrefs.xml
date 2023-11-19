@@ -1,0 +1,37 @@
+﻿<Properties StartupConfiguration="{F47256C8-1F40-4AF9-98B8-C4F9087F1924}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="../test/UnitTest1.cs">
+    <Files>
+      <File FileName="../Test/UnitTest1.cs" Line="12" Column="25" />
+      <File FileName="Program.cs" Line="196" Column="2" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Zadaca1" expanded="True">
+            <Node name="Test">
+              <Node name="UnitTest1.cs" selected="True" />
+            </Node>
+            <Node name="Zadaca1">
+              <Node name="Dependencies" expanded="True">
+                <Node name="FrameworkReferences" expanded="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.UnitTesting.TestPad">
+        <State name="__root__">
+          <Node name="Zadaca1" selected="True" />
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.ItemProperties.Test PreferredExecutionTarget="MonoDevelop.Default" />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.Zadaca1 PreferredExecutionTarget="MonoDevelop.Default" />
+</Properties>

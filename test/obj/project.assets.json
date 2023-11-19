@@ -381,6 +381,16 @@
             "related": ".xml"
           }
         }
+      },
+      "Zadaca1/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "compile": {
+          "bin/placeholder/Zadaca1.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Zadaca1.dll": {}
+        }
       }
     }
   },
@@ -975,6 +985,11 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
+    },
+    "Zadaca1/1.0.0": {
+      "type": "project",
+      "path": "../Zadaca1/Zadaca1.csproj",
+      "msbuildProject": "../Zadaca1/Zadaca1.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -983,6 +998,7 @@
       "NUnit >= 3.13.3",
       "NUnit.Analyzers >= 3.6.1",
       "NUnit3TestAdapter >= 4.4.2",
+      "Zadaca1 >= 1.0.0",
       "coverlet.collector >= 3.2.0"
     ]
   },
@@ -992,11 +1008,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/stagecoding/Documents/ETF/TS/Zadaca1/TestiranjeSoftvera/test/test.csproj",
-      "projectName": "test",
-      "projectPath": "/Users/stagecoding/Documents/ETF/TS/Zadaca1/TestiranjeSoftvera/test/test.csproj",
+      "projectUniqueName": "/Users/stagecoding/Documents/ETF/TS/Zadaca1/TestiranjeSoftvera/Test/Test.csproj",
+      "projectName": "Test",
+      "projectPath": "/Users/stagecoding/Documents/ETF/TS/Zadaca1/TestiranjeSoftvera/Test/Test.csproj",
       "packagesPath": "/Users/stagecoding/.nuget/packages/",
-      "outputPath": "/Users/stagecoding/Documents/ETF/TS/Zadaca1/TestiranjeSoftvera/test/obj/",
+      "outputPath": "/Users/stagecoding/Documents/ETF/TS/Zadaca1/TestiranjeSoftvera/Test/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/stagecoding/.nuget/NuGet/NuGet.Config"
@@ -1010,7 +1026,11 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "/Users/stagecoding/Documents/ETF/TS/Zadaca1/TestiranjeSoftvera/Zadaca1/Zadaca1.csproj": {
+              "projectPath": "/Users/stagecoding/Documents/ETF/TS/Zadaca1/TestiranjeSoftvera/Zadaca1/Zadaca1.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

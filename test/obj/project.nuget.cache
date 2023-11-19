@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "gGBjsdbWnAITYhOB1x2jAnimw90c2EbH/3SFWxmsBRXiZztrJVDw9z1olm+2MNa7xdyqGC5rcMgZmeWSoFSYKw==",
+  "dgSpecHash": "w2CcOhux0f+qy8QT7qhdUGyaZ7funcwDn1fC/7Fre/ZcK/eawrpTRCw0JFF6ohtJ6Eky25bD6Q62kyygLDIXsw==",
   "success": true,
-  "projectFilePath": "/Users/stagecoding/Documents/ETF/TS/Zadaca1/TestiranjeSoftvera/test/test.csproj",
+  "projectFilePath": "/Users/stagecoding/Documents/ETF/TS/Zadaca1/TestiranjeSoftvera/Test/Test.csproj",
   "expectedPackageFiles": [
     "/Users/stagecoding/.nuget/packages/coverlet.collector/3.2.0/coverlet.collector.3.2.0.nupkg.sha512",
     "/Users/stagecoding/.nuget/packages/microsoft.codecoverage/17.5.0/microsoft.codecoverage.17.5.0.nupkg.sha512",

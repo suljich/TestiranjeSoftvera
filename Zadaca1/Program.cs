@@ -1,86 +1,53 @@
 ﻿using System;
+using System.Collections.Generic;
 
-namespace Zadatak;
-class Test
+namespace Test;
+public class Test
 {
     static void Main()
     {
-        Stan[] stanovi = new Stan[4];
-        stanovi[0] = new NenamjestenStan(50, Lokacija.Gradsko, true);
-        stanovi[1] = new NenamjestenStan(80, Lokacija.Prigradsko, true);
-        stanovi[2] = new NamjestenStan(40, Lokacija.Prigradsko, true, 2000, 2);
-        stanovi[3] = new NamjestenStan(80, Lokacija.Gradsko, false, 3000, 6);
-        Console.WriteLine("Površina Lokacija Namješten Internet Vrijednost namještaja Broj aparata");
-        foreach (Stan stan in stanovi)
-        {
-            stan.Ispisi();
-        }
-        int minPovrsina = 0;
-        int maxPovrsina = 0;
-        Console.WriteLine("Unesite minimalnu zeljenu povrsinu");
-        while (!Int32.TryParse(Console.ReadLine(), out minPovrsina) || minPovrsina < 0)
-        {
-            Console.WriteLine("Unos nije ispravan");
-        }
-        Console.WriteLine("Unesite maksimalnu zeljenu povrsinu");
-        while (!Int32.TryParse(Console.ReadLine(), out maxPovrsina) || minPovrsina < 0)
-        {
-            Console.WriteLine("Unos nije ispravan");
-        }
-        foreach (Stan stan in stanovi)
-        {
-            if (stan.BrojKvadrata >= minPovrsina && stan.BrojKvadrata <= maxPovrsina)
-            {
-                stan.Ispisi();
-                Console.WriteLine("Ukupna cijena najma stana je {0:F2}.", stan.ObracunajCijenuNajma());
-            }
-        }
-        Console.ReadLine();
+        Agencija agencija = new Agencija();
+
+        agencija.DodajStan(new NenamjestenStan(50, Lokacija.Gradsko, true));
+        agencija.DodajStan(new NenamjestenStan(80, Lokacija.Prigradsko, true));
+        agencija.DodajStan(new NamjestenStan(40, Lokacija.Prigradsko, true, 2000, 2));
+        agencija.DodajStan(new NamjestenStan(80, Lokacija.Gradsko, false, 3000, 6));
+
+        agencija.DodajOsoblje(new Batler("John", "Doe", new DateTime(2022, 1, 1), 5));
+        agencija.DodajOsoblje(new Kuhar("Alice", "Smith", new DateTime(2022, 2, 1), 1500, new List<string> { "Pasta", "Steak" }));
+        agencija.DodajOsoblje(new Vrtlar("Bob", "Johnson", new DateTime(2022, 3, 1), 1200, new NenamjestenStan(60, Lokacija.Gradsko, true)));
+
+        Console.WriteLine("Apartments:");
+        agencija.IspisiStanove();
+        Console.WriteLine("\nStaff:");
+        agencija.IspisiOsoblje();
     }
 }
 
-enum Lokacija
+public enum Lokacija
 {
     Gradsko,
     Prigradsko,
 }
 
-abstract class Stan
+public abstract class Stan
 {
-    int _brojKvadrata;
-    Lokacija _lokacija;
-    bool _internet;
-
-    public int BrojKvadrata
-    {
-        get => _brojKvadrata;
-        set => _brojKvadrata = value;
-    }
-
-    public Lokacija Lokacija
-    {
-        get => _lokacija;
-        set => _lokacija = value;
-    }
-
-    public bool Internet
-    {
-        get => _internet;
-        set => _internet = value;
-    }
+    public int BrojKvadrata { get; set; }
+    public Lokacija Lokacija { get; set; }
+    public bool Internet { get; set; }
 
     virtual public void Ispisi()
     {
-        Console.Write("\n"+BrojKvadrata+" ");
-        Console.Write(Lokacija==Lokacija.Gradsko?"Gradsko ":"Prigradsko ");
+        Console.Write($"\n{BrojKvadrata} ");
+        Console.Write(Lokacija == Lokacija.Gradsko ? "Gradsko " : "Prigradsko ");
     }
 
     abstract public double ObracunajCijenuNajma();
 }
 
-class NenamjestenStan : Stan {
-
-   public NenamjestenStan(int povrsina, Lokacija lokacija, bool internet)
+public class NenamjestenStan : Stan
+{
+    public NenamjestenStan(int povrsina, Lokacija lokacija, bool internet)
     {
         BrojKvadrata = povrsina;
         Lokacija = lokacija;
@@ -104,22 +71,21 @@ class NenamjestenStan : Stan {
             value *= 1.02;
         }
         return value;
-
     }
-
 }
 
-class NamjestenStan : Stan {
-   public double vrijednostNamjestaja;
-   public int brojAparata;
+public class NamjestenStan : Stan
+{
+    public double VrijednostNamjestaja { get; set; }
+    public int BrojAparata { get; set; }
 
-   public NamjestenStan(int povrsina, Lokacija lokacija, bool internet, double vrijednostNamjestaja, int brojAparata)
+    public NamjestenStan(int povrsina, Lokacija lokacija, bool internet, double vrijednostNamjestaja, int brojAparata)
     {
         BrojKvadrata = povrsina;
         Lokacija = lokacija;
         Internet = internet;
-        this.vrijednostNamjestaja = vrijednostNamjestaja;
-        this.brojAparata = brojAparata;
+        VrijednostNamjestaja = vrijednostNamjestaja;
+        BrojAparata = brojAparata;
     }
 
     override public void Ispisi()
@@ -127,8 +93,8 @@ class NamjestenStan : Stan {
         base.Ispisi();
         Console.Write("Namjesten ");
         Console.Write(Internet ? "Da " : "Ne ");
-        Console.Write(vrijednostNamjestaja+" ");
-        Console.Write(brojAparata);
+        Console.Write($"{VrijednostNamjestaja} ");
+        Console.Write($"{BrojAparata}");
         Console.Write("\n");
     }
 
@@ -140,14 +106,132 @@ class NamjestenStan : Stan {
         {
             value *= 1.01;
         }
-        if (brojAparata<3)
+        if (BrojAparata < 3)
         {
-            value += vrijednostNamjestaja * 0.01;
-        } else
+            value += VrijednostNamjestaja * 0.01;
+        }
+        else
         {
-            value += vrijednostNamjestaja * 0.02;
+            value += VrijednostNamjestaja * 0.02;
         }
         return value;
+    }
+}
 
+public class Osoba
+{
+    public string Ime { get; set; }
+    public string Prezime { get; set; }
+    public DateTime DatumUposlenja { get; set; }
+
+    public Osoba(string ime, string prezime, DateTime datumUposlenja)
+    {
+        Ime = ime;
+        Prezime = prezime;
+        DatumUposlenja = datumUposlenja;
+    }
+
+    virtual public void Ispisi()
+    {
+        Console.WriteLine($"{Ime} {Prezime} {DatumUposlenja.ToShortDateString()}");
+    }
+}
+
+public class Batler : Osoba
+{
+    public int GodineIskustva { get; set; }
+
+    public Batler(string ime, string prezime, DateTime datumUposlenja, int godineIskustva)
+        : base(ime, prezime, datumUposlenja)
+    {
+        GodineIskustva = godineIskustva;
+    }
+
+    override public void Ispisi()
+    {
+        base.Ispisi();
+        Console.Write($"{GodineIskustva} godina iskustva\n");
+    }
+}
+
+public class Kuhar : Osoba
+{
+    public double MjesecnaPlata { get; set; }
+    public List<string> Jela { get; set; }
+
+    public Kuhar(string ime, string prezime, DateTime datumUposlenja, double mjesecnaPlata, List<string> jela)
+        : base(ime, prezime, datumUposlenja)
+    {
+        MjesecnaPlata = mjesecnaPlata;
+        Jela = jela;
+    }
+
+    override public void Ispisi()
+    {
+        base.Ispisi();
+        Console.Write($"{MjesecnaPlata} KM\n");
+    }
+}
+
+public class Vrtlar : Osoba
+{
+    public double MjesecnaPlata { get; set; }
+    public NenamjestenStan Stan { get; set; }
+
+    public Vrtlar(string ime, string prezime, DateTime datumUposlenja, double mjesecnaPlata, NenamjestenStan stan)
+        : base(ime, prezime, datumUposlenja)
+    {
+        MjesecnaPlata = mjesecnaPlata;
+        Stan = stan;
+    }
+
+    override public void Ispisi()
+    {
+        base.Ispisi();
+        Console.Write($"{MjesecnaPlata} KM\n");
+    }
+}
+
+public class Agencija
+{
+    public readonly List<Stan> stanovi = new List<Stan>();
+    public readonly List<Osoba> osoblje = new List<Osoba>();
+
+    public void DodajStan(Stan stan)
+    {
+        stanovi.Add(stan);
+    }
+
+    public void DodajOsoblje(Osoba osoba)
+    {
+        osoblje.Add(osoba);
+    }
+
+    public void IspisiStanove()
+    {
+        stanovi.Sort((s1, s2) => s1.ObracunajCijenuNajma().CompareTo(s2.ObracunajCijenuNajma()));
+
+        foreach (Stan stan in stanovi)
+        {
+            stan.Ispisi();
+            Console.WriteLine($"Ukupna cijena najma stana je {stan.ObracunajCijenuNajma():F2}.");
+        }
+    }
+
+    public void IspisiOsoblje()
+    {
+        osoblje.Sort((o1, o2) =>
+        {
+            if (o1 is not null && o2 is not null)
+            {
+                return ((Osoba)o1).DatumUposlenja.CompareTo(((Osoba)o2).DatumUposlenja);
+            }
+            return 0;
+        });
+
+        foreach (Osoba osoba in osoblje)
+        {
+            osoba.Ispisi();
+        }
     }
 }
